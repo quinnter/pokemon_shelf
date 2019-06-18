@@ -8,24 +8,24 @@ import axios from 'axios';
 class App extends Component {
   state = {
     userSearchTerm: "",
-    pokemon: []
+    pokemons: []
   }
   render() {
-    const { pokemon } = this.state
+    const { pokemons } = this.state
     return (
       <div className="App">
         <Header />
         <SearchForm setSearchTerm={this.setSearchTerm} />
-        <PokemonGrid pokemon={pokemon} />
+        <PokemonGrid pokemons={pokemons} />
       </div>
     );
   }
 
   componentDidMount = () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon-species'
+    const url = 'https://pokeapi.co/api/v2/pokemon'
     axios.get(url)
       .then(({ data: { results } }) => {
-        this.setState({ pokemon: results })
+        this.setState({ pokemons: results })
       })
   }
 

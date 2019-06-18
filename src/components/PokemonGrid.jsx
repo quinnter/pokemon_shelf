@@ -1,9 +1,14 @@
 import React from 'react'
+import PokemonCard from './PokemonCard';
 
-const PokemonGrid = () => {
+const PokemonGrid = (props) => {
     return (
         <div>
-            <p>A pokemon</p>
+            {props.pokemons.map((pokemon) => {
+                return (
+                    <PokemonCard key={pokemon.name} pokemon={pokemon} />
+                )
+            })}
         </div>
     )
 }
