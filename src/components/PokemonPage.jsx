@@ -4,8 +4,7 @@ import { Radar } from "react-chartjs-2";
 
 export default class PokemonPage extends Component {
   state = {
-    pokemon: null,
-    pokeData: []
+    pokemon: null
   };
 
   componentDidMount() {
@@ -18,11 +17,7 @@ export default class PokemonPage extends Component {
   }
 
   render() {
-    const { pokemon, pokeData } = this.state;
-    // // console.log(pokemon);
-    // // pokemon && console.log(pokemon.stats[0].stat.name);
-    // // pokemon && console.log(pokemon.stats);
-
+    const { pokemon } = this.state;
     if (pokemon) {
       const createRef = (input, key, value) => {
         const refObj = {};
@@ -31,8 +26,6 @@ export default class PokemonPage extends Component {
         });
         return refObj;
       };
-
-      //stats[{base_stat: 0, effort: 0, stat: { name: blah, url: www }}]
 
       const pokemonStats = {
         labels: Object.keys(createRef(pokemon.stats, "stat", "base_stat")),
@@ -48,11 +41,16 @@ export default class PokemonPage extends Component {
             data: Object.values(createRef(pokemon.stats, "stat", "base_stat"))
           }
         ]
-        // this.setState({ data: pokemonStats });
       };
-      //   return pokemonStats;
-
-      return <Radar data={pokemonStats} />;
+      return (
+        pokemon && (
+          <div>
+            <h2>{pokemon.name}</h2>
+            <img src={pokemon.sprites.front_default} alt={pokemon} />
+            <Radar data={pokemonStats} />
+          </div>
+        )
+      );
     }
 
     return (
@@ -60,7 +58,6 @@ export default class PokemonPage extends Component {
         <div>
           <h2>{pokemon.name}</h2>
           <img src={pokemon.sprites.front_default} alt={pokemon} />
-          {/* <Radar data={this.pokemonStats} /> */}
         </div>
       )
     );
