@@ -27,11 +27,12 @@ export default class PokemonPage extends Component {
         return refObj;
       };
 
+      //grab stats from pokemon in state
       const pokemonStats = {
         labels: Object.keys(createRef(pokemon.stats, "stat", "base_stat")),
         datasets: [
           {
-            label: "My First dataset",
+            label: `${pokemon.name} Stats`,
             backgroundColor: "rgba(179,181,198,0.2)",
             borderColor: "rgba(179,181,198,1)",
             pointBackgroundColor: "rgba(179,181,198,1)",
@@ -53,6 +54,7 @@ export default class PokemonPage extends Component {
       );
     }
 
+    //Render just the pokemon image
     return (
       pokemon && (
         <div>
