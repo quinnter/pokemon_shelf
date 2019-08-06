@@ -48,7 +48,12 @@ export default class PokemonPage extends Component {
           <div>
             <h2>{pokemon.name}</h2>
             <img src={pokemon.sprites.front_default} alt={pokemon} />
-            <Radar data={pokemonStats} />
+            <Radar
+              width={100}
+              height={100}
+              options={{ maintainAspectRatio: false }}
+              data={pokemonStats}
+            />
           </div>
         )
       );
